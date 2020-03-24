@@ -1,0 +1,5 @@
+- Add JS support to parse MIDI file JSON object into useable JSON (DONE)
+
+- Animate balls to match MIDI note input
+- Add time-based animation (music synchronization)
+- Automate process from MIDI to JSON (allow user to input MIDI instead of JSON)
