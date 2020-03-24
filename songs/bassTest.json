@@ -1,0 +1,297 @@
+{
+  "header": {
+    "PPQ": 96,
+    "timeSignature": [
+      4,
+      4
+    ],
+    "bpm": 115.00002875000719,
+    "name": ""
+  },
+  "tempo": [
+    {
+      "absoluteTime": 0,
+      "seconds": 0,
+      "bpm": 115.00002875000719
+    },
+    {
+      "absoluteTime": 0,
+      "seconds": 0,
+      "bpm": 115.00002875000719
+    },
+    {
+      "absoluteTime": 0,
+      "seconds": 0,
+      "bpm": 115.00002875000719
+    }
+  ],
+  "timeSignature": [
+    {
+      "absoluteTime": 0,
+      "seconds": 0,
+      "numerator": 4,
+      "denominator": 2,
+      "click": 24,
+      "notesQ": 8
+    }
+  ],
+  "startTime": 0,
+  "duration": 16.695648000000002,
+  "tracks": [
+    {
+      "startTime": 0,
+      "duration": 0,
+      "length": 0,
+      "notes": [],
+      "controlChanges": {},
+      "id": 0
+    },
+    {
+      "startTime": 0,
+      "duration": 0,
+      "length": 0,
+      "notes": [],
+      "controlChanges": {},
+      "id": 1
+    },
+    {
+      "startTime": 0,
+      "duration": 16.695648000000002,
+      "length": 32,
+      "notes": [
+        {
+          "name": "F2",
+          "midi": 41,
+          "time": 0,
+          "velocity": 1,
+          "duration": 0.521739
+        },
+        {
+          "name": "A2",
+          "midi": 45,
+          "time": 0.521739,
+          "velocity": 1,
+          "duration": 0.521739
+        },
+        {
+          "name": "C3",
+          "midi": 48,
+          "time": 1.043478,
+          "velocity": 1,
+          "duration": 0.521739
+        },
+        {
+          "name": "D3",
+          "midi": 50,
+          "time": 1.5652169999999999,
+          "velocity": 1,
+          "duration": 0.521739
+        },
+        {
+          "name": "F3",
+          "midi": 53,
+          "time": 2.086956,
+          "velocity": 0.905511811023622,
+          "duration": 0.5217390000000002
+        },
+        {
+          "name": "E3",
+          "midi": 52,
+          "time": 2.608695,
+          "velocity": 0.9921259842519685,
+          "duration": 0.5217390000000002
+        },
+        {
+          "name": "F3",
+          "midi": 53,
+          "time": 3.130434,
+          "velocity": 0.9921259842519685,
+          "duration": 0.5217390000000002
+        },
+        {
+          "name": "F#3",
+          "midi": 54,
+          "time": 3.6521730000000003,
+          "velocity": 0.9448818897637795,
+          "duration": 0.5217390000000002
+        },
+        {
+          "name": "G3",
+          "midi": 55,
+          "time": 4.1739120000000005,
+          "velocity": 0.937007874015748,
+          "duration": 0.5217390000000002
+        },
+        {
+          "name": "E3",
+          "midi": 52,
+          "time": 4.695651000000001,
+          "velocity": 0.952755905511811,
+          "duration": 0.5217390000000002
+        },
+        {
+          "name": "D3",
+          "midi": 50,
+          "time": 5.217390000000001,
+          "velocity": 0.9448818897637795,
+          "duration": 0.5217390000000002
+        },
+        {
+          "name": "B2",
+          "midi": 47,
+          "time": 5.739129000000001,
+          "velocity": 1,
+          "duration": 0.5217390000000002
+        },
+        {
+          "name": "G2",
+          "midi": 43,
+          "time": 6.260868000000001,
+          "velocity": 1,
+          "duration": 0.5217390000000002
+        },
+        {
+          "name": "D3",
+          "midi": 50,
+          "time": 6.782607000000001,
+          "velocity": 1,
+          "duration": 0.5217390000000002
+        },
+        {
+          "name": "G2",
+          "midi": 43,
+          "time": 7.304346000000002,
+          "velocity": 1,
+          "duration": 0.5217390000000002
+        },
+        {
+          "name": "A2",
+          "midi": 45,
+          "time": 7.826085000000002,
+          "velocity": 1,
+          "duration": 0.5217389999999993
+        },
+        {
+          "name": "A#2",
+          "midi": 46,
+          "time": 8.347824000000001,
+          "velocity": 1,
+          "duration": 0.5217390000000002
+        },
+        {
+          "name": "A2",
+          "midi": 45,
+          "time": 8.869563000000001,
+          "velocity": 1,
+          "duration": 0.5217390000000002
+        },
+        {
+          "name": "A#2",
+          "midi": 46,
+          "time": 9.391302000000001,
+          "velocity": 1,
+          "duration": 0.5217390000000002
+        },
+        {
+          "name": "B2",
+          "midi": 47,
+          "time": 9.913041000000002,
+          "velocity": 1,
+          "duration": 0.5217390000000002
+        },
+        {
+          "name": "C3",
+          "midi": 48,
+          "time": 10.434780000000002,
+          "velocity": 1,
+          "duration": 0.5217390000000002
+        },
+        {
+          "name": "E3",
+          "midi": 52,
+          "time": 10.956519000000002,
+          "velocity": 0.9921259842519685,
+          "duration": 0.5217390000000002
+        },
+        {
+          "name": "G3",
+          "midi": 55,
+          "time": 11.478258000000002,
+          "velocity": 0.9763779527559056,
+          "duration": 0.5217390000000002
+        },
+        {
+          "name": "F#3",
+          "midi": 54,
+          "time": 11.999997000000002,
+          "velocity": 0.9763779527559056,
+          "duration": 0.5217390000000002
+        },
+        {
+          "name": "F3",
+          "midi": 53,
+          "time": 12.521736000000002,
+          "velocity": 0.9921259842519685,
+          "duration": 0.5217390000000002
+        },
+        {
+          "name": "D#3",
+          "midi": 51,
+          "time": 13.043475000000003,
+          "velocity": 1,
+          "duration": 0.5217390000000002
+        },
+        {
+          "name": "D3",
+          "midi": 50,
+          "time": 13.565214000000003,
+          "velocity": 1,
+          "duration": 0.5217390000000002
+        },
+        {
+          "name": "G#3",
+          "midi": 56,
+          "time": 14.086953000000003,
+          "velocity": 1,
+          "duration": 0.5217390000000002
+        },
+        {
+          "name": "G3",
+          "midi": 55,
+          "time": 14.608692000000003,
+          "velocity": 0.9921259842519685,
+          "duration": 0.5217390000000002
+        },
+        {
+          "name": "C#3",
+          "midi": 49,
+          "time": 15.130431000000003,
+          "velocity": 1,
+          "duration": 0.5217390000000002
+        },
+        {
+          "name": "C3",
+          "midi": 48,
+          "time": 15.652170000000003,
+          "velocity": 1,
+          "duration": 0.5217389999999984
+        },
+        {
+          "name": "E2",
+          "midi": 40,
+          "time": 16.173909000000002,
+          "velocity": 1,
+          "duration": 0.5217390000000002
+        }
+      ],
+      "controlChanges": {},
+      "id": 2,
+      "name": "Channel #1",
+      "instrumentNumber": 33,
+      "instrument": "electric bass (finger)",
+      "instrumentFamily": "bass",
+      "channelNumber": 0,
+      "isPercussion": false
+    }
+  ]
+}
