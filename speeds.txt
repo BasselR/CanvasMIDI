@@ -1,0 +1,4 @@
+time = 0.521739 s
+speed = 100 px/s
+
+dist = ? = speed * time = 100 * 0.521739 = 52.1739 px
