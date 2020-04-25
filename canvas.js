@@ -1,9 +1,5 @@
 var myCanvas = document.querySelector('canvas');
 
-//var midiFile = require(['./songs/bassTest.json']);
-//var midiFile = JSON.parse(data);
-//console.log(midiFile);
-
 var now;    //For calculating time between frames (time-based animation)
 var last;
 var delta;
@@ -12,7 +8,10 @@ var midiFile;   //Text representation of input .JSON file
 var songObj;    //JSON.parse(text) - JSON object representation of input .JSON file
 var noteList;   //JSON Array storing all notes (JSON objects)
 var mySound;
-var spd = 5; //100 px/s -- speed at which note circles travel at
+var spd = 200; //200 px/s -- speed at which note circles travel at
+
+var globalRadius = 30;
+var vertClear = 2.5 * globalRadius;     //Padding between 'top and bottom of canvas' and notes
 
 myCanvas.width = window.innerWidth - 50;
 myCanvas.height = window.innerHeight - 50;
@@ -69,7 +68,12 @@ function onUpload(e){
 
         //FIX HEIGHT (AND ORGANIZATION lol)
         for(i in noteList){
-            nodeArray.push(new Circle((myCanvas.width / 2) + (noteList[i].time * 200), ((maxMidi - noteList[i].midi) / diff) * 400, -spd, 0, 30));
+            let x = (myCanvas.width / 2) + (noteList[i].time * 200);
+            let y = vertClear + ((maxMidi - noteList[i].midi) / diff) * (myCanvas.height - (2 * vertClear));
+            let dx = -spd;
+            let dy = 0;
+            let radius = globalRadius;
+            nodeArray.push(new Circle(x, y, dx, dy, radius));
         }
 
         //console.log(nodeArray.length);
@@ -105,18 +109,8 @@ class Circle{
 
     update(){
 
-        // if(this.x + this.radius > myCanvas.width || this.x - this.radius < 0){
-        //     this.dx *= -1;
-        //     //mySound.play();
-        // }
-
-        // if(this.y + this.radius > myCanvas.height || this.y - this.radius < 0){
-        //     this.dy *= -1;
-        //     //mySound.play();
-        // }
-
-        this.x += this.dx * (delta / 100);
-        this.y += this.dy * (delta / 100);
+        this.x += this.dx * delta;
+        this.y += this.dy * delta;
 
         this.draw();
     }
@@ -138,25 +132,9 @@ function sound(src) {
     }    
 }
 
-// var circleArray = [];
-// for(var i = 0; i < 2; i++){
-//     var x = radius + Math.random() * (myCanvas.width - 2 * radius);
-//     var y = radius + Math.random() * (myCanvas.height - 2 * radius);
-//     var dx = (Math.random() - 0.5) * 8;
-//     var dy = 2 + Math.random() * 4;
-//     if(Math.random() > 0.5){
-//         dx *= -1;
-//     }
-//     if(Math.random() > 0.5){
-//         dy *= -1;
-//     }
-//     var radius = 30;
-//     circleArray.push(new Circle(x, y, dx, dy, radius));
-// }
-
 function setDelta(){
     now = Date.now();
-    delta = now - last;
+    delta = (now - last) / 1000;    //Seconds since last frame
     last = now;
 }
 
@@ -172,4 +150,3 @@ function animate(){
     globalDraw();
     requestAnimationFrame(animate);
 }
-
