@@ -1,4 +1,18 @@
-time = 0.521739 s
-speed = 100 px/s
+Each note lasts 0.521739
+Each note is separated by 200 px
 
-dist = ? = speed * time = 100 * 0.521739 = 52.1739 px
+So each note has to travel 200 px in 0.521739s
+So each note has to travel (200 / 0.521739) = 383.333429 px/s
+
+So dx = 383.333429 px/s
+
+-----------------------
+
+Height calculation
+
+Example:
+max = 20
+min = 5
+diff = 15
+
+vertClear + ((maxMidi - noteList[i].midi) / diff) * (myCanvas.height - (2 * vertClear))
