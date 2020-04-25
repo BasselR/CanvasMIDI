@@ -4,11 +4,15 @@ var myCanvas = document.querySelector('canvas');
 //var midiFile = JSON.parse(data);
 //console.log(midiFile);
 
+var now;    //For calculating time between frames (time-based animation)
+var last;
+var delta;
+
 var midiFile;   //Text representation of input .JSON file
 var songObj;    //JSON.parse(text) - JSON object representation of input .JSON file
 var noteList;   //JSON Array storing all notes (JSON objects)
 var mySound;
-var spd = 3; //100 px/s -- speed at which note circles travel at
+var spd = 5; //100 px/s -- speed at which note circles travel at
 
 myCanvas.width = window.innerWidth - 50;
 myCanvas.height = window.innerHeight - 50;
@@ -16,12 +20,12 @@ myCanvas.height = window.innerHeight - 50;
 var c = myCanvas.getContext('2d');
 
 function loadSound(){
-    mySound = new sound("songs/bruh.mp3");
+    mySound = new sound("songs/bassTest.mp3");
 }
 
 //onUpload event is fired from <input> once user uploads a file
 function onUpload(e){
-    //mySound.play();
+    mySound.play();
     console.log("Event occured: onUpload");
     midiFile = document.getElementById('song').files[0];    //Stores uploaded file in midiFile
     var fr = new FileReader();
@@ -60,7 +64,7 @@ function onUpload(e){
             }
         }
 
-        nodeArray = []
+        nodeArray = [];
         diff = maxMidi - minMidi;
 
         //FIX HEIGHT (AND ORGANIZATION lol)
@@ -70,6 +74,7 @@ function onUpload(e){
 
         //console.log(nodeArray.length);
 
+        last = Date.now();
         animate();
 
     }
@@ -110,8 +115,8 @@ class Circle{
         //     //mySound.play();
         // }
 
-        this.x += this.dx;
-        this.y += this.dy;
+        this.x += this.dx * (delta / 100);
+        this.y += this.dy * (delta / 100);
 
         this.draw();
     }
@@ -149,11 +154,22 @@ function sound(src) {
 //     circleArray.push(new Circle(x, y, dx, dy, radius));
 // }
 
-function animate(){
-    requestAnimationFrame(animate);
+function setDelta(){
+    now = Date.now();
+    delta = now - last;
+    last = now;
+}
+
+function globalDraw(){
     c.clearRect(0, 0, window.innerWidth, window.innerHeight);
     for(var i = 0; i < nodeArray.length; i++){
         nodeArray[i].update();
     }
+}
+
+function animate(){
+    setDelta();
+    globalDraw();
+    requestAnimationFrame(animate);
 }
 
