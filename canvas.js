@@ -17,23 +17,20 @@ var vertClear = 2 * globalRadius;     //Padding between 'top and bottom of canva
 myCanvas.width = window.innerWidth - 50;
 myCanvas.height = window.innerHeight - 50;
 
-function loadSound(){
-    mySound = new sound("resources/songs/twinkle.mp3");
-}
+// Hardcoding sound retrieval from local directory
 
-// function loadSound2(){
-    
+// function loadSound(){
+//     mySound = new sound("resources/songs/twinkle.mp3");
 // }
 
 //onUpload event is fired from <input> once user uploads a file
-function onUpload(e){
-    mySound.play();
+function onMP3Upload(e){
+    let fname = document.getElementById('mp3File').files[0];
+    mySound = new sound(fname);
+}
 
-    document.getElementById("song").style.display = "none";
-    document.getElementById("myCanvas").style.display = "block";
-
-    console.log("Event occured: onUpload");
-    midiFile = document.getElementById('song').files[0];    //Stores uploaded file in midiFile
+function onJSONUpload(){
+    midiFile = document.getElementById('jsonFile').files[0];    //Stores uploaded file in midiFile
     var fr = new FileReader();
 
     //fr.onload event is fired once fr.readAsText finishes loading file
@@ -49,14 +46,10 @@ function onUpload(e){
                 break;
             }
         }
-        //console.log("noteList: " + noteList[0].name);
-        console.log("foo");
 
         for(i in noteList){
             console.log(noteList[i].name);
         }
-
-        // PUT MAIN CODE HERE
 
         var maxMidi = noteList[0].midi;
         var minMidi = noteList[0].midi;
@@ -82,16 +75,27 @@ function onUpload(e){
             nodeArray.push(new Circle(x, y, dx, dy, radius));
         }
 
-        //console.log(nodeArray.length);
-
-        last = Date.now();
-        animate();
-
     }
 
     fr.readAsText(midiFile);    //Reads file as text, stores in fr.result
-    console.log("bar");
-}   
+}
+
+//On button click "Visualize!"
+function onSubmit(){
+    //Hide all 'initial' elements
+    let initials = document.getElementsByClassName('initial');
+    for(let i = 0; i < initials.length; i++){
+        initials[i].style.display = "none";
+    }
+
+    //Reveal canvas
+    document.getElementById("myCanvas").style.display = "block";
+    
+    //Start delta timing and begin song & animation
+    last = Date.now();
+    mySound.play();
+    animate();
+}
 
 class Circle{
 
@@ -126,7 +130,7 @@ class Circle{
 
 function sound(src) {
     this.sound = document.createElement("audio");
-    this.sound.src = src;
+    this.sound.src = URL.createObjectURL(src);
     this.sound.setAttribute("preload", "auto");
     this.sound.setAttribute("controls", "none");
     this.sound.style.display = "none";
@@ -137,6 +141,9 @@ function sound(src) {
     this.stop = function(){
         this.sound.pause();
     }    
+    this.sound.onend = function(e) {
+      URL.revokeObjectURL(this.src);
+    }
 }
 
 function setDelta(){

@@ -7,21 +7,26 @@
     <link href="style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
-<body onload="loadSound()">
+<!-- <body onload="loadSound()"> -->
+<body>
     <canvas id="myCanvas"></canvas>
 
-    <div class="custom-file w-50 p-3 upload-1">
-        <input type="file" class="custom-file-input" id="customFile">
+    <div class="initial custom-file w-50 p-3 upload-1">
+        <input type="file" class="custom-file-input" id="jsonFile" onchange="onJSONUpload()">
         <label class="custom-file-label" for="customFile">Upload JSON File!</label>
     </div>
 
-    <div class="custom-file w-50 p-3 upload-2">
-        <input type="file" class="custom-file-input" id="customFile">
+    <div class="initial custom-file w-50 p-3 upload-2">
+        <input type="file" class="custom-file-input" id="mp3File" onchange="onMP3Upload()">
         <label class="custom-file-label" for="customFile">Upload MP3 File!</label>
     </div>
 
-    <div class="submit">
+    <!-- <div class="initial submit">
         <a class="btn btn-primary" href="#" role="button">Visualize!</a>
+    </div> -->
+
+    <div class="initial submit">
+        <button type="button" class="btn btn-primary" onclick="onSubmit()">Visualize!</button>
     </div>
 
     <!-- <input class="button1" type="file" id="song" onchange="onUpload()"> -->
