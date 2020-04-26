@@ -4,22 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Baz</title>
-    <style>
-        canvas{
-            border: 1px solid black;
-            background: rgba(255, 0, 0, 0.2);
-        }
-
-        body {
-            margin: 0;
-        }
-    </style>
+    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body onload="loadSound()">
-    <canvas></canvas>
-    <input type="file" id="song" onchange="onUpload()">
-    <!-- <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script> !-->
-    <!-- <script type="text/javascript"src="songs/bassTest.json"></script> !-->
+    <canvas id="myCanvas"></canvas>
+
+    <div class="custom-file w-50 p-3 upload-1">
+        <input type="file" class="custom-file-input" id="customFile">
+        <label class="custom-file-label" for="customFile">Upload JSON File!</label>
+    </div>
+
+    <div class="custom-file w-50 p-3 upload-2">
+        <input type="file" class="custom-file-input" id="customFile">
+        <label class="custom-file-label" for="customFile">Upload MP3 File!</label>
+    </div>
+
+    <div class="submit">
+        <a class="btn btn-primary" href="#" role="button">Visualize!</a>
+    </div>
+
+    <!-- <input class="button1" type="file" id="song" onchange="onUpload()"> -->
+
     <script src="canvas.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <script>
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function() {
+          var fileName = $(this).val().split("\\").pop();
+          $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+
 </body>
 </html>
