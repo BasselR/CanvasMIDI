@@ -1,30 +1,37 @@
 var myCanvas = document.querySelector('canvas');
+var c = myCanvas.getContext('2d');
 
-var now;    //For calculating time between frames (time-based animation)
-var last;
-var delta;
+var now, last, delta    //For calculating time between frames (time-based animation)
 
 var midiFile;   //Text representation of input .JSON file
 var songObj;    //JSON.parse(text) - JSON object representation of input .JSON file
 var noteList;   //JSON Array storing all notes (JSON objects)
 var mySound;
+
+
 var spd = 200; //200 px/s -- speed at which note circles travel at
 
 var globalRadius = 30;
-var vertClear = 2.5 * globalRadius;     //Padding between 'top and bottom of canvas' and notes
+var vertClear = 2 * globalRadius;     //Padding between 'top and bottom of canvas' and notes (min: 1 radius)
 
 myCanvas.width = window.innerWidth - 50;
 myCanvas.height = window.innerHeight - 50;
 
-var c = myCanvas.getContext('2d');
-
 function loadSound(){
-    mySound = new sound("songs/bassTest.mp3");
+    mySound = new sound("resources/songs/twinkle.mp3");
 }
+
+// function loadSound2(){
+    
+// }
 
 //onUpload event is fired from <input> once user uploads a file
 function onUpload(e){
     mySound.play();
+
+    document.getElementById("song").style.display = "none";
+    document.getElementById("myCanvas").style.display = "block";
+
     console.log("Event occured: onUpload");
     midiFile = document.getElementById('song').files[0];    //Stores uploaded file in midiFile
     var fr = new FileReader();
@@ -66,9 +73,8 @@ function onUpload(e){
         nodeArray = [];
         diff = maxMidi - minMidi;
 
-        //FIX HEIGHT (AND ORGANIZATION lol)
         for(i in noteList){
-            let x = (myCanvas.width / 2) + (noteList[i].time * 200);
+            let x = (myCanvas.width / 2) + (noteList[i].time * spd);
             let y = vertClear + ((maxMidi - noteList[i].midi) / diff) * (myCanvas.height - (2 * vertClear));
             let dx = -spd;
             let dy = 0;
@@ -102,6 +108,7 @@ class Circle{
         c.beginPath();
         c.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false);
         c.strokeStyle = 'rgba(255, 0, 0, 1)';
+        c.lineWidth = 1;
         c.stroke();
         c.fillStyle = 'rgba(100, 0, 0, 1)';
         c.fill();
@@ -143,6 +150,12 @@ function globalDraw(){
     for(var i = 0; i < nodeArray.length; i++){
         nodeArray[i].update();
     }
+    c.beginPath();
+    c.moveTo((myCanvas.width / 2), 0);
+    c.lineTo((myCanvas.width / 2), myCanvas.height);
+    c.lineWidth = 5;
+    c.strokeStyle = 'rgba(109, 113, 237, 0.7';
+    c.stroke();
 }
 
 function animate(){
