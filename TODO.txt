@@ -1,6 +1,7 @@
-- Add JS support to parse MIDI file JSON object into useable JSON (DONE)
+(DONE) - Add JS support to parse MIDI file JSON object into useable JSON
+(DONE) - Animate balls to match MIDI note input
+(DONE) - Add time-based animation (music synchronization)
+(DONE) - REWRITE HEIGHT CALCULATION
 
-- Animate balls to match MIDI note input
-- Add time-based animation (music synchronization)
 - Automate process from MIDI to JSON (allow user to input MIDI instead of JSON)
-- REWRITE HEIGHT CALCULATION
+- Make compatible with complex MIDIs (multiple / different note lists)
