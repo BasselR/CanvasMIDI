@@ -111,10 +111,10 @@ class Circle{
     draw(){
         c.beginPath();
         c.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false);
-        c.strokeStyle = 'rgba(255, 0, 0, 1)';
+        c.strokeStyle = 'rgba(155, 220, 242, 0.6)';
         c.lineWidth = 1;
         c.stroke();
-        c.fillStyle = 'rgba(100, 0, 0, 1)';
+        c.fillStyle = 'rgba(155, 220, 242, 0.6)';
         c.fill();
     }
 
@@ -161,7 +161,7 @@ function globalDraw(){
     c.moveTo((myCanvas.width / 2), 0);
     c.lineTo((myCanvas.width / 2), myCanvas.height);
     c.lineWidth = 5;
-    c.strokeStyle = 'rgba(109, 113, 237, 0.7';
+    c.strokeStyle = 'rgba(245, 66, 209, 0.7)';
     c.stroke();
 }
 

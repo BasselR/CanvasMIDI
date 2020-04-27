@@ -6,6 +6,7 @@ canvas{
 
 body {
     margin: 0;
+    background: rgba(0, 0, 0, 1);
 }
 
 .upload-1 {
