@@ -11,6 +11,10 @@ body {
     background: rgba(0, 0, 0, 1);
 }
 
+.hublink {
+    margin: 3vh 90vw;
+}
+
 /* html {
     margin: 0;
     background: rgba(0, 0, 0, 1);
