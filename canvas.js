@@ -71,7 +71,7 @@ function onJSONUpload(){
             let y = vertClear + ((maxMidi - noteList[i].midi) / diff) * (myCanvas.height - (2 * vertClear));
             let dx = -spd;
             let dy = 0;
-            let radius = globalRadius;
+            let radius = noteList[i].duration * 30;
             nodeArray.push(new Circle(x, y, dx, dy, radius));
         }
 
@@ -108,6 +108,14 @@ class Circle{
         this.resizeSpd = -1;
     }
 
+    getX(){
+        return this.x;
+    }
+
+    getY(){
+        return this.y;
+    }
+
     draw(){
         c.beginPath();
         c.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false);
@@ -118,10 +126,23 @@ class Circle{
         c.fill();
     }
 
+    drawLines(i){
+        c.beginPath();
+        c.moveTo(this.x, this.y);
+        c.lineTo(nodeArray[i + 1].getX(), nodeArray[i + 1].getY());
+        c.lineWidth = 2;
+        c.strokeStyle = 'rgba(255, 102, 207, 0.3)';
+        c.stroke();
+    }
+
     update(){
 
         this.x += this.dx * delta;
         this.y += this.dy * delta;
+
+        // if(this.x <= myCanvas.width / 2){
+
+        // }
 
         this.draw();
     }
@@ -156,6 +177,9 @@ function globalDraw(){
     c.clearRect(0, 0, window.innerWidth, window.innerHeight);
     for(var i = 0; i < nodeArray.length; i++){
         nodeArray[i].update();
+        if(i < nodeArray.length - 1){
+            nodeArray[i].drawLines(i);
+        }
     }
     c.beginPath();
     c.moveTo((myCanvas.width / 2), 0);
