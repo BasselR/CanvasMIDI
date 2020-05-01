@@ -8,6 +8,7 @@ var songObj;    //JSON.parse(text) - JSON object representation of input .JSON f
 var noteList;   //JSON Array storing all notes (JSON objects)
 var mySound;
 
+var barPos = (myCanvas.width / 2);
 
 var spd = 200; //200 px/s -- speed at which note circles travel at
 
@@ -67,7 +68,7 @@ function onJSONUpload(){
         diff = maxMidi - minMidi;
 
         for(i in noteList){
-            let x = (myCanvas.width / 2) + (noteList[i].time * spd);
+            let x = barPos + (noteList[i].time * spd);
             let y = vertClear + ((maxMidi - noteList[i].midi) / diff) * (myCanvas.height - (2 * vertClear));
             let dx = -spd;
             let dy = 0;
@@ -122,15 +123,20 @@ class Circle{
         c.strokeStyle = 'rgba(155, 220, 242, 0.6)';
         c.lineWidth = 1;
         c.stroke();
-        c.fillStyle = 'rgba(155, 220, 242, 0.6)';
-        c.fill();
+        if(this.x > barPos){
+            c.fillStyle = 'rgba(155, 220, 242, 0.6)';
+            c.fill();
+        }
     }
 
     drawLines(i){
+        if(i == nodeArray.length - 1){
+            return;
+        }
         c.beginPath();
         c.moveTo(this.x, this.y);
         c.lineTo(nodeArray[i + 1].getX(), nodeArray[i + 1].getY());
-        c.lineWidth = 2;
+        c.lineWidth = 3;
         c.strokeStyle = 'rgba(255, 102, 207, 0.3)';
         c.stroke();
     }
@@ -177,13 +183,11 @@ function globalDraw(){
     c.clearRect(0, 0, window.innerWidth, window.innerHeight);
     for(var i = 0; i < nodeArray.length; i++){
         nodeArray[i].update();
-        if(i < nodeArray.length - 1){
-            nodeArray[i].drawLines(i);
-        }
+        nodeArray[i].drawLines(i);
     }
     c.beginPath();
-    c.moveTo((myCanvas.width / 2), 0);
-    c.lineTo((myCanvas.width / 2), myCanvas.height);
+    c.moveTo(barPos, 0);
+    c.lineTo(barPos, myCanvas.height);
     c.lineWidth = 5;
     c.strokeStyle = 'rgba(245, 66, 209, 0.7)';
     c.stroke();
