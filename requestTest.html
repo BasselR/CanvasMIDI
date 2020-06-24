@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>request testing</title>
+    </head>
+    <body>
+        <div>
+            <p>Upload MIDI Input</p>
+            <input type="file" accept=".mid,.midi" class="custom-file-input" id="midiFile" onchange="onMIDIUpload()">
+            <a id="result" href=""></a>
+            <p id="jobStatus"></p>
+        </div>
+    </body>
+    <script src="requests.js"></script>
+</html>

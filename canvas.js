@@ -1,7 +1,7 @@
 var myCanvas = document.querySelector('canvas');
 var c = myCanvas.getContext('2d');
 
-var now, last, delta    //For calculating time between frames (time-based animation)
+var now, last, delta;    //For calculating time between frames (time-based animation)
 
 var midiFile;   //Text representation of input .JSON file
 var songObj;    //JSON.parse(text) - JSON object representation of input .JSON file
@@ -9,6 +9,7 @@ var noteList;   //JSON Array storing all notes (JSON objects)
 var mySound;
 
 var barPos = (myCanvas.width / 2);
+var displayLines = false;
 
 var spd = 200; //200 px/s -- speed at which note circles travel at
 
@@ -28,6 +29,11 @@ myCanvas.height = window.innerHeight - 50;
 function onMP3Upload(e){
     let fname = document.getElementById('mp3File').files[0];
     mySound = new sound(fname);
+}
+
+function onMIDIUpload(e){
+    let fname = document.getElementById('midiFile').files[0];
+    // mySound = new sound(fname);
 }
 
 function onJSONUpload(){
@@ -51,7 +57,7 @@ function onJSONUpload(){
         for(i in noteList){
             console.log(noteList[i].name);
         }
-
+        
         var maxMidi = noteList[0].midi;
         var minMidi = noteList[0].midi;
 
@@ -183,7 +189,7 @@ function globalDraw(){
     c.clearRect(0, 0, window.innerWidth, window.innerHeight);
     for(var i = 0; i < nodeArray.length; i++){
         nodeArray[i].update();
-        nodeArray[i].drawLines(i);
+        if(displayLines) nodeArray[i].drawLines(i);
     }
     c.beginPath();
     c.moveTo(barPos, 0);

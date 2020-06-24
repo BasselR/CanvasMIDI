@@ -12,17 +12,17 @@
 <body>
     <canvas id="myCanvas"></canvas>
 
-    <div class="hublink">
+    <div class="initial hublink">
         <a target="_blank" href="https://github.com/BasselR/CanvasMIDI"><i class="fab fa-github fa-3x"></i></a>
     </div>
     
     <div class="initial custom-file w-50 p-3 upload-1">
-        <input type="file" class="custom-file-input" id="jsonFile" onchange="onJSONUpload()">
+        <input type="file" accept=".json" class="custom-file-input" id="jsonFile" onchange="onJSONUpload()">
         <label class="custom-file-label" for="customFile">Upload JSON File!</label>
     </div>
 
     <div class="initial custom-file w-50 p-3 upload-2">
-        <input type="file" class="custom-file-input" id="mp3File" onchange="onMP3Upload()">
+        <input type="file" accept=".mp3" class="custom-file-input" id="mp3File" onchange="onMP3Upload()">
         <label class="custom-file-label" for="customFile">Upload MP3 File!</label>
     </div>
 
