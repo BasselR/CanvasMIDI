@@ -1,0 +1,22 @@
+{
+  "name": "canvasmidi",
+  "version": "1.0.0",
+  "description": "CanvasMIDI description",
+  "main": "canvas.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BasselR/CanvasMIDI.git"
+  },
+  "author": "baz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BasselR/CanvasMIDI/issues"
+  },
+  "homepage": "https://github.com/BasselR/CanvasMIDI#readme",
+  "dependencies": {
+    "midi-json-parser": "^8.0.4"
+  }
+}

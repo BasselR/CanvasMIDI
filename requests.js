@@ -1,3 +1,10 @@
+/* API Keys:
+ * basselrezkalla@gmail.com: ed84f12919e7beecde965a135248f5cf
+ * bazzyoperations@gmail.com: 458b84e5f39e5ab3c2f2100733f69508
+ */
+
+var apiKey = "458b84e5f39e5ab3c2f2100733f69508";
+
 /******************
  * 
  * Function definitions for 3 main job functions (createSkeleton, uploadFile, getJob)
@@ -23,7 +30,7 @@ function createSkeleton(){
     });
 
     xhr.open("POST", "https://api2.online-convert.com/jobs");
-    xhr.setRequestHeader("x-oc-api-key", "ed84f12919e7beecde965a135248f5cf");
+    xhr.setRequestHeader("x-oc-api-key", apiKey);
     xhr.setRequestHeader("Content-Type", "text/plain");
 
     xhr.send(data);
@@ -45,7 +52,7 @@ function uploadFile(file){
     
     // if open async is set to true, we get missing / incomplete info error
     xhr2.open("POST", concatURL, false);
-    xhr2.setRequestHeader("x-oc-api-key", "ed84f12919e7beecde965a135248f5cf");
+    xhr2.setRequestHeader("x-oc-api-key", apiKey);
     xhr2.setRequestHeader("x-oc-upload-uuid", "rtyuio");
 
     xhr2.send(data2);
@@ -63,7 +70,7 @@ function getJob(){
         getJobJSON = JSON.parse(this.responseText);
         let resp2JSON = getJobJSON;
         code = resp2JSON["status"]["code"];
-        document.getElementById('jobStatus').textContent = code;
+        //document.getElementById('jobStatus').textContent = code;
         if(code === "completed"){
             outputURL = resp2JSON["output"][0]["uri"];
             console.log("Output URL: " + outputURL);
@@ -78,7 +85,7 @@ function getJob(){
 
     // if open async is set to true, loop of getJob() doesn't work
     xhr3.open("GET", getJobURL, false);
-    xhr3.setRequestHeader("x-oc-api-key", "ed84f12919e7beecde965a135248f5cf");
+    xhr3.setRequestHeader("x-oc-api-key", apiKey);
 
     xhr3.send();
     return getJobJSON["status"]["code"];
@@ -103,11 +110,28 @@ var temp = "initial";
 
 createSkeleton();
 
+function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function(){
+        this.sound.play();
+    }
+    this.stop = function(){
+        this.sound.pause();
+    }
+}
+
 // Upload file
 function onMIDIUpload(e){
+    console.log("code rn: " + code);
+    document.getElementById('jobStatus').textContent = "bruh!";
+    console.log("ASDJHSAKJDH" + document.getElementById('jobStatus').textContent);
     midiFileObj = document.getElementById('midiFile').files[0];
-    uploadFile(midiFileObj); 
-
+    uploadFile(midiFileObj);
     // while( !(temp == "completed") ){
     //     console.log(temp);
     //     wait(2000);
@@ -122,7 +146,9 @@ function onMIDIUpload(e){
         code = getJob();
     }
 
-    console.log("done while loop...")
+    console.log("done while loop...");
+    mySound = new sound(outputURL);
+    //mySound.play();
 
     // setInterval(function(){
     //     if (code === "processing"){
