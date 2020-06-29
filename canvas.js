@@ -182,6 +182,7 @@ function parseJSON(){
         nodeArray.push(new Circle(x, y, dx, dy, radius));
     }
     document.getElementById('visButton').style.display = "inline";
+    document.getElementById('loading').style.display = "none";
 }
 
 //On button click "Visualize!"

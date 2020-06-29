@@ -39,3 +39,7 @@ body {
     display: none;
     text-align: center;
 }
+
+label {
+    left: 7em !important;
+}
