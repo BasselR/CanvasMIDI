@@ -140,7 +140,8 @@ function parseFile(file) {
 }
 
 function onMIDIUpload(e){
-    let fname = document.getElementById('midiFile').files[0];
+    document.getElementById('loading').textContent = "Processing...";
+    console.log(document.getElementById('loading').textContent);
     midiToMP3();
 }
 
@@ -180,7 +181,7 @@ function parseJSON(){
         let radius = noteList[i].duration * 30;
         nodeArray.push(new Circle(x, y, dx, dy, radius));
     }
-    document.getElementById('visualize').style.display = "block";
+    document.getElementById('visButton').style.display = "inline";
 }
 
 //On button click "Visualize!"

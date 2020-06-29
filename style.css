@@ -33,5 +33,9 @@ body {
 .submit {
     padding-top: 10%;
     text-align: center;
+}
+
+#visButton {
     display: none;
+    text-align: center;
 }
