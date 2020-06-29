@@ -3,11 +3,12 @@
  * bazzyoperations@gmail.com: 458b84e5f39e5ab3c2f2100733f69508
  */
 
+// online-convert.com developer API key 
 var apiKey = "458b84e5f39e5ab3c2f2100733f69508";
-var concatURL;
+// jobID generated from createSkeleton to fetch from the correct URL in uploadFile and getJob
 var jobID;
-var bigX;
-var jobDone = false;
+// time (in ms) between each getJob call
+var jobInterval = 200;
 
 // Wait function - sleeps for x milliseconds
 function wait(ms){
@@ -37,10 +38,10 @@ function createSkeleton(){
 
 function uploadFile(file, strJSON){
 
-    let resJSON = JSON.parse(strJSON);
-    let uploadServer = resJSON["server"];
+    const resJSON = JSON.parse(strJSON);
+    const uploadServer = resJSON["server"];
     jobID = resJSON["id"];
-    concatURL = uploadServer + "/upload-file/" + jobID;
+    const concatURL = uploadServer + "/upload-file/" + jobID;
     console.log("Job ID: " + jobID);
     console.log("Concat URL: " + concatURL);
 
@@ -73,9 +74,23 @@ function getJob(){
     return fetch("https://api2.online-convert.com/jobs/" + jobID, requestOptions);
 }
 
-function jobLoop(){
-    let promise = getJob();
-    promise.then()
+async function jobLoop(){
+    let jobDone = false;
+    while(!jobDone){
+        const response = await getJob();
+        const strJSON = await response.text();
+        const resJSON = JSON.parse(strJSON);
+        const code = resJSON["status"]["code"];
+        console.log("Code: " + code);
+        if(code === "completed"){
+            jobDone = true;
+            const outputURL = resJSON["output"][0]["uri"];
+            console.log("Output URL: " + outputURL);
+        }
+        else{
+            wait(jobInterval);
+        }
+    }
 }
 
 function onMIDIUpload(e){
@@ -83,22 +98,6 @@ function onMIDIUpload(e){
     createSkeleton()
         .then(response => response.text())
         .then(result => uploadFile(midiFileObj, result))
-        .then(z => getJob())
-        .then(response => response.text())
-        .then(result => console.log(result))
+        .then(jobLoop)
         .catch(error => console.log('error', error));
 }
-
-
-
-
-    // {
-    //     let resJSON = JSON.parse(result);
-    //     jobID = resJSON["id"];
-    //     console.log("Job ID: " + jobID);
-    //     concatURL = resJSON["server"] + "/upload-file/" + jobID
-    // }
-// createSkeleton()
-//     .then(response => response.text())
-//     .then(result => console.log(result))
-//     .catch(error => console.log('error', error));
