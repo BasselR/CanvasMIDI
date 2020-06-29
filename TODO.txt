@@ -3,5 +3,9 @@
 (DONE) - Add time-based animation (music synchronization)
 (DONE) - REWRITE HEIGHT CALCULATION
 
-- Automate process from MIDI to JSON (allow user to input MIDI instead of JSON)
+(DONE) - Automate process from MIDI to JSON (allow user to input MIDI instead of JSON)
 - Make compatible with complex MIDIs (multiple / different note lists)
+- Fix MP3 conversion to be non-blocking, so to allow JSON conversion to happen during 'waits'
+- Add "loading" / "processing" text to keep user updated during loading process
+- Add dropdown menu to allow user to choose from pre-picked MIDI songs
+- Fix css and styling

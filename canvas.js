@@ -108,9 +108,6 @@ async function jobLoop(){
         if(code === "completed"){
             jobDone = true;
             const outputURL = resJSON["output"][0]["uri"];
-            // document.getElementById('jobStatus').textContent = "Completed!";
-            // document.getElementById('result').textContent = "output link";
-            // document.getElementById('result').setAttribute("href", outputURL); 
             console.log("Output URL: " + outputURL);
             mySound = new sound(outputURL);
             parseFile(midiFileObj);
@@ -123,7 +120,6 @@ async function jobLoop(){
 
 function midiToMP3(){
     midiFileObj = document.getElementById('midiFile').files[0];
-    //document.getElementById('jobStatus').textContent = "Processing...";
     createSkeleton()
         .then(response => response.text())
         .then(result => uploadFile(midiFileObj, result))
@@ -251,10 +247,6 @@ class Circle{
 
         this.x += this.dx * delta;
         this.y += this.dy * delta;
-
-        // if(this.x <= myCanvas.width / 2){
-
-        // }
 
         this.draw();
     }
