@@ -33,4 +33,5 @@ body {
 .submit {
     padding-top: 10%;
     text-align: center;
+    display: none;
 }

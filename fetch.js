@@ -87,9 +87,9 @@ async function jobLoop(){
         if(code === "completed"){
             jobDone = true;
             const outputURL = resJSON["output"][0]["uri"];
-            document.getElementById('jobStatus').textContent = "Completed!";
-            document.getElementById('result').textContent = "output link";
-            document.getElementById('result').setAttribute("href", outputURL); 
+            // document.getElementById('jobStatus').textContent = "Completed!";
+            // document.getElementById('result').textContent = "output link";
+            // document.getElementById('result').setAttribute("href", outputURL); 
             console.log("Output URL: " + outputURL);
             parseFile(midiFileObj);
         }
@@ -99,9 +99,9 @@ async function jobLoop(){
     }
 }
 
-function onMIDIUpload(e){
+function midiToMP3(){
     midiFileObj = document.getElementById('midiFile').files[0];
-    document.getElementById('jobStatus').textContent = "Processing...";
+    //document.getElementById('jobStatus').textContent = "Processing...";
     createSkeleton()
         .then(response => response.text())
         .then(result => uploadFile(midiFileObj, result))
@@ -114,13 +114,7 @@ function parseFile(file) {
     var reader = new FileReader();
     reader.onload = function (e) {
         var partsData = MidiConvert.parse(e.target.result);
-        //console.log(JSON.stringify(partsData, undefined, 2));
         console.log(partsData);
     };
     reader.readAsBinaryString(file);
-}
-
-function onJSONUpload(e){
-    JSONFileObj = document.getElementById('JSONFile').files[0];
-    console.log(JSONFileObj);
 }
