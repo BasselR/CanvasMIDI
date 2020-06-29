@@ -9,6 +9,8 @@ var apiKey = "458b84e5f39e5ab3c2f2100733f69508";
 var jobID;
 // time (in ms) between each getJob call
 var jobInterval = 200;
+// Object storing the MIDI file
+var midiFileObj;
 
 // Wait function - sleeps for x milliseconds
 function wait(ms){
@@ -85,7 +87,11 @@ async function jobLoop(){
         if(code === "completed"){
             jobDone = true;
             const outputURL = resJSON["output"][0]["uri"];
+            document.getElementById('jobStatus').textContent = "Completed!";
+            document.getElementById('result').textContent = "output link";
+            document.getElementById('result').setAttribute("href", outputURL); 
             console.log("Output URL: " + outputURL);
+            parseFile(midiFileObj);
         }
         else{
             wait(jobInterval);
@@ -95,9 +101,26 @@ async function jobLoop(){
 
 function onMIDIUpload(e){
     midiFileObj = document.getElementById('midiFile').files[0];
+    document.getElementById('jobStatus').textContent = "Processing...";
     createSkeleton()
         .then(response => response.text())
         .then(result => uploadFile(midiFileObj, result))
         .then(jobLoop)
         .catch(error => console.log('error', error));
+}
+
+function parseFile(file) {
+    //read the file
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        var partsData = MidiConvert.parse(e.target.result);
+        //console.log(JSON.stringify(partsData, undefined, 2));
+        console.log(partsData);
+    };
+    reader.readAsBinaryString(file);
+}
+
+function onJSONUpload(e){
+    JSONFileObj = document.getElementById('JSONFile').files[0];
+    console.log(JSONFileObj);
 }

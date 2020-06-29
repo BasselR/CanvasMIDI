@@ -11,7 +11,12 @@
             <input type="file" accept=".mid,.midi" class="custom-file-input" id="midiFile" onchange="onMIDIUpload()">
             <a id="result"></a>
             <p id="jobStatus"></p>
+            <p>Upload JSON Input</p>
+            <input type="file" accept=".json" class="custom-file-input" id="JSONFile" onchange="onJSONUpload()">
+            <a id="JSONresult"></a>
+            <p id="JSONjobStatus"></p>
         </div>
     </body>
-    <script src="fetch.js"></script>
+    <script type="text/javascript" src="MidiConvert.js"></script>
+    <script type="text/javascript" src="fetch.js"></script>
 </html>
