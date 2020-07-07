@@ -215,11 +215,14 @@ function parseJSON(){
 function ownMidi(){
     document.getElementById('uploadInput').style.display = "block";
     document.getElementById('presetInput').style.display = "none";
+    document.getElementById('visButton').style.display = "none";
 }
 
 function presetMidi(){
+    document.getElementById('defaultOption').selected = "true";
     document.getElementById('uploadInput').style.display = "none";
     document.getElementById('presetInput').style.display = "block";
+    document.getElementById('visButton').style.display = "none";
 }
 
 //On button click "Visualize!"
