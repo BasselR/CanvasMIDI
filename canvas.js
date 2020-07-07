@@ -180,6 +180,7 @@ async function parseLocal(name) {
 }
 
 function onMIDIUpload(e){
+    document.getElementById('loading').style.display = "inline";
     document.getElementById('loading').textContent = "Processing...";
     console.log(document.getElementById('loading').textContent);
     midiToMP3();
