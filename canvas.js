@@ -39,6 +39,7 @@ generateOptions();
 
 function generateOptions(){
     var sel = document.getElementById('exampleFormControlSelect1');
+    presetList.sort();
     presetList.forEach(function(element){
         let opt = document.createElement('option');
         opt.appendChild(document.createTextNode(element));
