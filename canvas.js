@@ -51,13 +51,12 @@ function selectSong(){
     // document.getElementById('loadSongDiv').style.display = "block";
     document.getElementById('visButton').style.display = "none";
     loadSong();
-    document.getElementById('visButton').style.display = "inline";
 }
 
 function loadSong(){
     let sel = document.getElementById('exampleFormControlSelect1');
     mySound = mySound = new sound("resources/songs/" + sel.value + ".mp3");
-    //mySound.play();
+    parseLocal(sel.value);
 }
 
 // Wait function - sleeps for x milliseconds
@@ -164,6 +163,20 @@ function parseFile(file) {
         parseJSON();
     };
     reader.readAsBinaryString(file);
+}
+
+async function parseLocal(name) {
+    //read the file
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        songObj = JSON.parse(reader.result);
+        parseJSON();
+        console.log("done parsing");
+        document.getElementById('visButton').style.display = "inline";
+    };
+    let url = "resources/songs/" + name + ".json";
+    let blob = await fetch(url).then(r => r.blob());
+    reader.readAsText(blob);
 }
 
 function onMIDIUpload(e){
@@ -310,23 +323,23 @@ function sound(src) {
     }
 }
 
-function soundLocal(src) {
-    this.sound = document.createElement("audio");
-    this.sound.src = URL.createObjectURL(src);
-    this.sound.setAttribute("preload", "auto");
-    this.sound.setAttribute("controls", "none");
-    this.sound.style.display = "none";
-    document.body.appendChild(this.sound);
-    this.play = function(){
-        this.sound.play();
-    }
-    this.stop = function(){
-        this.sound.pause();
-    }    
-    this.sound.onend = function(e) {
-      URL.revokeObjectURL(this.src);
-    }
-}
+// function soundLocal(src) {
+//     this.sound = document.createElement("audio");
+//     this.sound.src = URL.createObjectURL(src);
+//     this.sound.setAttribute("preload", "auto");
+//     this.sound.setAttribute("controls", "none");
+//     this.sound.style.display = "none";
+//     document.body.appendChild(this.sound);
+//     this.play = function(){
+//         this.sound.play();
+//     }
+//     this.stop = function(){
+//         this.sound.pause();
+//     }    
+//     this.sound.onend = function(e) {
+//       URL.revokeObjectURL(this.src);
+//     }
+// }
 
 function setDelta(){
     now = Date.now();
