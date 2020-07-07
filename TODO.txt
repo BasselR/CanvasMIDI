@@ -7,7 +7,7 @@
 - Make compatible with complex MIDIs (multiple / different note lists)
 - Fix MP3 conversion to be non-blocking, so to allow JSON conversion to happen during 'waits'
 (DONE) - Add "loading" / "processing" text to keep user updated during loading process
-- Add dropdown menu to allow user to choose from pre-picked MIDI songs
+(DONE) Add dropdown menu to allow user to choose from pre-picked MIDI songs
 (DONE) - Fix css and styling
 - If notes of a song start RIGHT away, then add a fixed buffer amount to all those notes'
 time property, so that animation doesn't start jarringly
