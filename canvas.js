@@ -48,7 +48,8 @@ function generateOptions(){
 }
 
 function selectSong(){
-    // document.getElementById('loadSongDiv').style.display = "block";
+    document.getElementById('loading').style.display = "inline";
+    document.getElementById('loading').textContent = "Processing...";
     document.getElementById('visButton').style.display = "none";
     loadSong();
 }
@@ -171,8 +172,6 @@ async function parseLocal(name) {
     reader.onload = function (e) {
         songObj = JSON.parse(reader.result);
         parseJSON();
-        console.log("done parsing");
-        document.getElementById('visButton').style.display = "inline";
     };
     let url = "resources/songs/" + name + ".json";
     let blob = await fetch(url).then(r => r.blob());
