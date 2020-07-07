@@ -20,14 +20,9 @@ body {
     background: rgba(0, 0, 0, 1);
 } */
 
-.upload-1 {
-    margin: 10% 20%;
-    text-align: center;
-}
-
-.upload-2 {
+.upload {
     margin: 5% 20%;
-    text-align: center;
+    /* text-align: center; */
 }
 
 .submit {
@@ -40,6 +35,39 @@ body {
     text-align: center;
 }
 
+#ownMidi {
+    width: 12em;
+}
+
+#presetMidi {
+    width: 12em;
+}
+
+#startWrapper {
+    padding-top: 5em;
+    text-align: center;
+}
+
+.startButton {
+    display: inline-block;
+    padding: 2em;
+}
+
 label {
     left: 7em !important;
+}
+
+#uploadInput {
+    display: none;
+}
+
+#presetInput {
+    display: none;
+    width: 40%;
+    margin: 3% auto;
+}
+
+#loadSongDiv {
+    display: none;
+    text-align: center;
 }

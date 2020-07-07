@@ -32,6 +32,33 @@ var jobID;
 var jobInterval = 200;
 // Object storing the MIDI file
 var midiFileObj;
+// List of built-in preset songs to offer user
+var presetList = ['twinkle', 'joy', 'sarabande'];
+
+generateOptions();
+
+function generateOptions(){
+    var sel = document.getElementById('exampleFormControlSelect1');
+    presetList.forEach(function(element){
+        let opt = document.createElement('option');
+        opt.appendChild(document.createTextNode(element));
+        opt.value = element;
+        sel.appendChild(opt);
+    })
+}
+
+function selectSong(){
+    // document.getElementById('loadSongDiv').style.display = "block";
+    document.getElementById('visButton').style.display = "none";
+    loadSong();
+    document.getElementById('visButton').style.display = "inline";
+}
+
+function loadSong(){
+    let sel = document.getElementById('exampleFormControlSelect1');
+    mySound = mySound = new sound("resources/songs/" + sel.value + ".mp3");
+    //mySound.play();
+}
 
 // Wait function - sleeps for x milliseconds
 function wait(ms){
@@ -185,6 +212,16 @@ function parseJSON(){
     document.getElementById('loading').style.display = "none";
 }
 
+function ownMidi(){
+    document.getElementById('uploadInput').style.display = "block";
+    document.getElementById('presetInput').style.display = "none";
+}
+
+function presetMidi(){
+    document.getElementById('uploadInput').style.display = "none";
+    document.getElementById('presetInput').style.display = "block";
+}
+
 //On button click "Visualize!"
 function onSubmit(){
     //Hide all 'initial' elements
@@ -267,6 +304,24 @@ function sound(src) {
     }
     this.stop = function(){
         this.sound.pause();
+    }
+}
+
+function soundLocal(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = URL.createObjectURL(src);
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function(){
+        this.sound.play();
+    }
+    this.stop = function(){
+        this.sound.pause();
+    }    
+    this.sound.onend = function(e) {
+      URL.revokeObjectURL(this.src);
     }
 }
 

@@ -16,10 +16,30 @@
     <div class="initial hublink">
         <a target="_blank" href="https://github.com/BasselR/CanvasMIDI"><i class="fab fa-github fa-3x"></i></a>
     </div>
-    
-    <div class="initial custom-file w-50 upload-1">
+
+    <div id="startWrapper" class="initial">
+        <div class="startButton">
+            <button type="button" id="ownMidi" class="btn btn-primary" onclick="ownMidi()">Upload your own MIDI</button>
+        </div>
+        <div class="startButton">
+            <button type="button" id="presetMidi" class="btn btn-primary" onclick="presetMidi()">Pick a preset MIDI</button>
+        </div>
+    </div>
+
+    <div id="uploadInput" class="initial custom-file w-50 upload">
         <input type="file" accept=".mid,.midi" class="custom-file-input" id="midiFile" onchange="onMIDIUpload()">
         <label class="custom-file-label" for="customFile">Upload MIDI File!</label>
+    </div>
+
+    <div id="presetInput" class="form-group">
+        <label for="exampleFormControlSelect1"></label>
+        <select class="form-control" id="exampleFormControlSelect1" onchange="selectSong()">
+            <option disabled selected value> Select an option </option>
+        </select>
+    </div>
+
+    <div id="loadSongDiv" class="initial submit">
+        <button type="button" id="loadSong" class="btn btn-primary" onclick="loadSong()">Load song</button>
     </div>
 
     <div id="visualize" class="initial submit">
