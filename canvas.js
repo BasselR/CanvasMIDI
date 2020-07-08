@@ -15,6 +15,8 @@ var spd = 200; //200 px/s -- speed at which note circles travel at
 
 var globalRadius = 30;
 var vertClear = 2 * globalRadius;     //Padding between 'top and bottom of canvas' and notes (min: 1 radius)
+var baseRadius = 20;
+var maxAddRadius = 30;
 
 myCanvas.width = window.innerWidth - 50;
 myCanvas.height = window.innerHeight - 50;
@@ -201,6 +203,8 @@ function parseJSON(){
     
     var maxMidi = noteList[0].midi;
     var minMidi = noteList[0].midi;
+    var maxDur = noteList[0].duration;
+    var minDur = noteList[0].duration;
 
     for(i in noteList){
         if(noteList[i].midi > maxMidi){
@@ -209,17 +213,25 @@ function parseJSON(){
         if(noteList[i].midi < minMidi){
             minMidi = noteList[i].midi;
         }
+        if(noteList[i].duration > maxDur){
+            maxDur = noteList[i].duration;
+        }
+        if(noteList[i].duration < minDur){
+            minDur = noteList[i].duration;
+        }
     }
 
     nodeArray = [];
     diff = maxMidi - minMidi;
+    durDiff = maxDur - minDur;
 
     for(i in noteList){
         let x = barPos + (noteList[i].time * spd);
         let y = vertClear + ((maxMidi - noteList[i].midi) / diff) * (myCanvas.height - (2 * vertClear));
         let dx = -spd;
         let dy = 0;
-        let radius = noteList[i].duration * 30;
+        //let radius = noteList[i].duration * 30;
+        let radius = baseRadius + maxAddRadius - ((maxDur - noteList[i].duration) / durDiff) * maxAddRadius;
         nodeArray.push(new Circle(x, y, dx, dy, radius));
     }
     document.getElementById('visButton').style.display = "inline";
