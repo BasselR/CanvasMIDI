@@ -27,7 +27,7 @@ myCanvas.height = window.innerHeight - 50;
  */
 
 // online-convert.com developer API key 
-var apiKey = "ed84f12919e7beecde965a135248f5cf";
+var apiKey = "458b84e5f39e5ab3c2f2100733f69508";
 // jobID generated from createSkeleton to fetch from the correct URL in uploadFile and getJob
 var jobID;
 // time (in ms) between each getJob call
