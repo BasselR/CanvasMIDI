@@ -11,3 +11,4 @@
 (DONE) - Fix css and styling
 - If notes of a song start RIGHT away, then add a fixed buffer amount to all those notes'
 time property, so that animation doesn't start jarringly
+- Volume control
