@@ -15,14 +15,8 @@ body {
     margin: 3vh 90vw;
 }
 
-/* html {
-    margin: 0;
-    background: rgba(0, 0, 0, 1);
-} */
-
 .upload {
     margin: 5% 20%;
-    /* text-align: center; */
 }
 
 .submit {
